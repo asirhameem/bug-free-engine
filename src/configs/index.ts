@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
 import path from 'path'
+import {DatabaseConfig} from "../interfaces/config.interface";
 
 dotenv.config({
   path: path.join(
@@ -8,9 +9,17 @@ dotenv.config({
   ),
 })
 
+const db: DatabaseConfig = {
+  host: process.env.DATABASE_HOST,
+  port: parseInt(process.env.DATABASE_PORT || '3306'),
+  name: process.env.DATABASE_NAME ?? 'bug_free',
+  user: process.env.DATABASE_USER ?? 'root',
+  password: process.env.DATABASE_PASSWORD ?? '',
+};
 export default {
   env: process.env.NODE_ENV,
-  port: process.env.PORT,
+  port: process.env.NODE_PORT,
+  db,
   jwt: {
     secret: process.env.JWT_SECRET,
     refresh_secret: process.env.JWT_REFRESH_SECRET,

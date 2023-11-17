@@ -1,12 +1,15 @@
-import express, {Request, Response} from "express";
-import configs from "./configs/index";
-const app =express();
+import app from "./configs/express.config";
+import AppDataSource from "./configs/orm.config";
+import configs from "./configs";
 
-app.get('/', (req: Request, res: Response) => {
-    res.send("endpoint is ok");
+AppDataSource.initialize()
+  .then(() => {
+      console.log("Data Source has been initialized!")
+  })
+  .catch((err) => {
+      console.error("Error during Data Source initialization", err)
+  });
+
+app.listen(configs.port, ()=> {
+  console.log("App is listening on port: " + configs.port);
 });
-
-app.listen(3000, () => {
-    console.log(configs);
-    console.log("application listening on port 3000");
-})
