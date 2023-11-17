@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Node js backend with express",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
@@ -13,6 +14,8 @@
   "author": "Md. Asir Hameem",
   "license": "ISC",
   "dependencies": {
+    "@types/jsonwebtoken": "^9.0.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mysql2": "^3.6.3",
     "nodemon": "^3.0.1",
