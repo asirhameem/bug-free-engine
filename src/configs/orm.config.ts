@@ -8,6 +8,10 @@ const AppDataSource = new DataSource({
   username: configs.db.user,
   password: configs.db.password,
   database: configs.db.name,
+  entities: ["src/entities/*{.ts,.js}"],
+  synchronize: true,
+  logging: true,
+  migrations: ["src/migrations/**/*{.ts,.js}"],
 })
 
 export default AppDataSource;
