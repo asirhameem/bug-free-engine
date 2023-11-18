@@ -4,14 +4,12 @@ services:
   node-backend:
     build: .
     image: node-backend
-    environment:
-      - MONGODB_URL=mongodb://mongodb:27017/node-boilerplate
+    env_file:
+      - .env.dev
     ports:
       - '3000:3000'
     depends_on:
-      - mongodb
-    volumes:
-      - .:/usr/src/node-backend
+      - mysql
     networks:
       - node-network
 
@@ -19,13 +17,7 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      -MYSQL_DATABASE: 'uzumaki-db'
-        # So you don't have to use root, but you can if you like
-      -MYSQL_USER: 'root'
-        # You can use whatever password you like
-      -MYSQL_PASSWORD:
-        # Password for root access
-      -MYSQL_ROOT_PASSWORD:
+      - MYSQL_ROOT_PASSWORD=root
     ports:
       - '3306:3306'
     volumes:

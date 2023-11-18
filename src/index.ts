@@ -10,6 +10,6 @@ AppDataSource.initialize()
       console.error("Error during Data Source initialization", err)
   });
 
-app.listen(configs.port, ()=> {
+app.listen(3000, ()=> {
   console.log("App is listening on port: " + configs.port);
 });

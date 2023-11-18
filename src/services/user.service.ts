@@ -3,7 +3,6 @@ import UserEntity from "../entities/user.entity";
 import {User} from "../interfaces/user.interface";
 import {randomUUID} from "crypto";
 import bcrypt from "bcrypt";
-import configs from "../configs";
 
 
 const userRepo = AppDataSource.getRepository(UserEntity);
@@ -13,7 +12,7 @@ const getUserByEmail = async (userEmail: string) => {
 }
 
 const userLogin = async (userEmail: string, userPass: string) => {
-  const hashedPass = await bcrypt.hash(userPass, parseInt(configs.salt));
+  const hashedPass = await bcrypt.hash(userPass, 10);
   return userRepo.findOneBy({email: userEmail, password: hashedPass});
 }
 const createUser = async (user: User) => {
@@ -22,7 +21,7 @@ const createUser = async (user: User) => {
     entity.user_id = randomUUID();
     entity.name = user.name;
     entity.email = user.email;
-    entity.password = await bcrypt.hash(user.password, parseInt(configs.salt));
+    entity.password = await bcrypt.hash(user.password, 10);
     entity.role = user.role;
 
     return await userRepo.save(entity);
