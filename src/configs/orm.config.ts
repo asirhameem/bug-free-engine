@@ -10,7 +10,7 @@ const AppDataSource = new DataSource({
   database: configs.db.name,
   entities: ["src/entities/*{.ts,.js}"],
   synchronize: true,
-  logging: true,
+  logging: false,
   migrations: ["src/migrations/**/*{.ts,.js}"],
 })
 
