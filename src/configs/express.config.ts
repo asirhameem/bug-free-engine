@@ -4,6 +4,9 @@ import routers from "../routers";
 
 const app = express();
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 // Routes - you would define your routes here
 app.use('/v1', routers);
 
