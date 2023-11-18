@@ -18,7 +18,8 @@ const db: DatabaseConfig = {
 };
 export default {
   env: process.env.NODE_ENV,
-  port: process.env.NODE_PORT,
+  port: process.env.NODE_PORT ?? 3000,
+  salt: process.env.NODE_SALT ?? '',
   db,
   jwt: {
     secret: process.env.JWT_SECRET,

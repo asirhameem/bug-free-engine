@@ -13,6 +13,6 @@ router.post(
 router.post(
   '/login',
   // UserController.validate('login'),
-  // UserController.login,
+  UserController.login,
 );
 export const UserRouter: Router = router;

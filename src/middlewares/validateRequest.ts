@@ -19,6 +19,7 @@ const validateRequest =
           res.status(HttpStatus.BAD_REQUEST).json({ success: false, errors: validationErrors });
         } else {
           // res.status(HttpStatus.SERVER_ERR0R).json({ success: false, error: 'Internal Server Error' });
+          console.log(error);
           next(error);
         }
       }
