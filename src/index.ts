@@ -19,7 +19,7 @@ AppDataSource.initialize()
       console.error("Error during Data Source initialization", err)
   });
 
-app.use(cors())
+
 app.listen(configs.port, ()=> {
   console.log("App is listening on port: " + configs.port);
 });
