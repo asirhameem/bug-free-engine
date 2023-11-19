@@ -3,6 +3,7 @@ import AppDataSource from "./configs/orm.config";
 import dotenv from "dotenv";
 import configs from "./configs";
 import path from "path";
+import cors from "cors";
 
 dotenv.config({
   path: path.join(
@@ -18,6 +19,7 @@ AppDataSource.initialize()
       console.error("Error during Data Source initialization", err)
   });
 
+app.use(cors())
 app.listen(configs.port, ()=> {
   console.log("App is listening on port: " + configs.port);
 });
