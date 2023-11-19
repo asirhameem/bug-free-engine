@@ -7,13 +7,18 @@ import bcrypt from "bcrypt";
 
 const userRepo = AppDataSource.getRepository(UserEntity);
 
-const getUserByEmail = async (userEmail: string) => {
-  return userRepo.findOneBy({email: userEmail});
+const isEmailExist = async (userEmail: string) => {
+  const userInfo = await userRepo.findOneBy({email: userEmail});
+  return !!userInfo;
 }
 
 const userLogin = async (userEmail: string, userPass: string) => {
-  const hashedPass = await bcrypt.hash(userPass, 10);
-  return userRepo.findOneBy({email: userEmail, password: hashedPass});
+  const userInfo : any = await userRepo.findOneBy({email: userEmail});
+  const matchPassword = await bcrypt.compare(userPass, userInfo.password);
+  if (!matchPassword) {
+    return false;
+  }
+  return userInfo;
 }
 const createUser = async (user: User) => {
   try {
@@ -32,6 +37,6 @@ const createUser = async (user: User) => {
 
 export const UserServices = {
   createUser,
-  getUserByEmail,
+  isEmailExist,
   userLogin,
 }
