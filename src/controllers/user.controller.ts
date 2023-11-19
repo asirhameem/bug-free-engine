@@ -2,6 +2,7 @@ import {Request, Response} from "express";
 import {UserServices} from "../services/user.service";
 import HttpStatus from "../enums/httpStatus.enum";
 import {jwtHelpers} from "../helpers/jwt.helper";
+import configs from "../configs";
 
 export class UserController {
   static async signup(req: Request, res: Response) {
@@ -34,7 +35,7 @@ export class UserController {
       const userToken = jwtHelpers.createToken({
         email: userInfo.email,
         userId: userInfo.user_id
-      }, "my-bug-free-engine", '30000');
+      }, configs.jwt.secret, configs.jwt.expires_in);
 
       return res.status(HttpStatus.OK).json({success: true, data: {user: userInfo, token: userToken}});
     } catch (err: any) {

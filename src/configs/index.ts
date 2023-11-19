@@ -18,13 +18,13 @@ const db: DatabaseConfig = {
 };
 export default {
   env: process.env.NODE_ENV,
-  port: process.env.NODE_PORT ?? 3000,
+  port: process.env.NODE_PORT ?? 8080,
   salt: process.env.NODE_SALT ?? 10,
   db,
   jwt: {
-    secret: process.env.JWT_SECRET,
+    secret: process.env.JWT_SECRET ?? 'my-app-secret',
     refresh_secret: process.env.JWT_REFRESH_SECRET,
-    expires_in: process.env.JWT_EXPIRES_IN,
+    expires_in: process.env.JWT_EXPIRES_IN ?? "36000",
     refresh_expires_in: process.env.JWT_REFRESH_EXPIRES_IN,
   },
 }
