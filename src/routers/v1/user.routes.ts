@@ -2,6 +2,7 @@ import { Router } from 'express';
 import {UserController} from "../../controllers/user.controller";
 import {UserValidation} from "../../validations/user.validation";
 import validateRequest from "../../middlewares/validateRequest";
+import auth from "../../middlewares/auth";
 
 const router: Router = Router();
 
@@ -12,7 +13,8 @@ router.post(
 );
 router.post(
   '/login',
-  // UserController.validate('login'),
   UserController.login,
 );
+
+router.get('/profile', auth(), UserController.profile);
 export const UserRouter: Router = router;

@@ -22,7 +22,7 @@ export default {
   salt: process.env.NODE_SALT ?? 10,
   db,
   jwt: {
-    secret: process.env.JWT_SECRET ?? 'my-app-secret',
+    secret: process.env.JWT_SECRET ?? 'bug-free-engine-backend',
     refresh_secret: process.env.JWT_REFRESH_SECRET,
     expires_in: process.env.JWT_EXPIRES_IN ?? "36000",
     refresh_expires_in: process.env.JWT_REFRESH_EXPIRES_IN,

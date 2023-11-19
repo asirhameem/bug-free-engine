@@ -43,5 +43,13 @@ export class UserController {
     }
   }
 
+  static async profile(req: Request, res: Response) {
+    try {
+      return res.status(HttpStatus.OK).json({success: true, data: {}});
+    } catch (err: any) {
+      return res.status(HttpStatus.SERVER_ERR0R).json({success: false, message: err});
+    }
+  }
+
 
 }

@@ -8,15 +8,14 @@ const auth = () =>
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         //get authorization token
-        const token = req.headers.authorization
+        const bearerToken = req.headers.authorization;
+        const token = bearerToken?.split(' ')[1];
         if (!token) {
           throw new Error(HttpStatus.UNAUTHORIZED + 'You are not authorized')
         }
         // verify token
-        let verifiedUser = null
-
-        verifiedUser = jwtHelpers.verifyToken(token, configs.jwt.secret as Secret)
-
+        let verifiedUser = jwtHelpers.verifyToken(token, configs.jwt.secret as Secret)
+        console.log(verifiedUser);
         next()
       } catch (error) {
         next(error)
